@@ -1,4 +1,4 @@
 .rag_venv/
 raw_data
-__pycache__/*.pyc
+__pycache__/
 *.py[cod]
