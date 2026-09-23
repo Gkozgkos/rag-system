@@ -1,2 +1,3 @@
 .rag_venv/
 raw_data
+__pycache__/
