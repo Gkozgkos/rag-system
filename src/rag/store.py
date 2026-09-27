@@ -24,7 +24,7 @@ if __name__ == "__main__" :
 
     model = SentenceTransformer("all-MiniLM-L6-v2")
     docs = load_documents("raw_data/")
-    chunks = chunk_documents(docs, 500, 100)[:20]
+    chunks = chunk_documents(docs, 500, 100)
     vectors = embedding_chunks(chunks,model)
     save_index(chunks, vectors,"processed_data/")
     loaded_chunks, loaded_vectors = load_index("processed_data/")
