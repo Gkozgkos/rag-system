@@ -1,6 +1,7 @@
 from sentence_transformers import SentenceTransformer
 import numpy as np
 from store import load_index
+
 def embedder_query(question, model):
    vector_question = model.encode(question)
    
@@ -9,7 +10,7 @@ def embedder_query(question, model):
 def search(query_vector, vectors, chunks, top_k = 5):
    result = []
 
-   scores = np.dot(vectors, query_vector) # i can use @ instead of np.dot, scores = vectors @ query_vector
+   scores = np.dot(vectors, query_vector) # i can use @ instead of np.dot, scores = vectors @ query_vector 
    best = np.argsort(scores)[-top_k:][::-1]
    for i in best:
       match = {}
