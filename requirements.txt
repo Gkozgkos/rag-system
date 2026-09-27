@@ -1,5 +1,7 @@
-pypdf
-fontools
-docx
-cryptography
-sentence-transformers
+docx==0.2.4
+numpy==2.5.3
+ollama==0.6.2
+pypdf==6.19.0
+python_docx==1.2.0
+sentence_transformers==6.1.0
+torch==2.14.0
