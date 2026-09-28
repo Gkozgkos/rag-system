@@ -3,4 +3,4 @@ processed_data
 raw_data
 __pycache__/
 *.py[cod]
- src\rag\config.py
+src/rag/config.py
