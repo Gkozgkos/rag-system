@@ -2,6 +2,7 @@ from retriever import embedder_query, search
 from store import load_index
 from sentence_transformers import SentenceTransformer
 from ollama import generate
+from config import EMBEDDING_MODEL, LLM_MODEL
 
 def generate_prompt(question, results):
     texts = []
@@ -22,11 +23,11 @@ def generate_answer(prompt, model_name):
 
 if __name__ == "__main__":
 
-    question = "how many substitutes can a futsal team name?"
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    question = "how many sets are in a tennis game?"
+    model = SentenceTransformer(EMBEDDING_MODEL)
     q = embedder_query(question, model)
     print(q.shape)
     chunks, vectors = load_index("processed_data/")
     result = search(q, vectors, chunks, top_k =5)
     prompt = generate_prompt(question, result)
-    print(generate_answer(prompt, model_name= "llama3.2:3b"))
+    print(generate_answer(prompt, model_name=LLM_MODEL))

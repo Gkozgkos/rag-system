@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import json
 from sentence_transformers import SentenceTransformer
+from config import EMBEDDING_MODEL
 
 def save_index(chunks, vectors, path):
     folder = Path(path)
@@ -22,7 +23,7 @@ def load_index(path):
 
 if __name__ == "__main__" :
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer(EMBEDDING_MODEL)
     docs = load_documents("raw_data/")
     chunks = chunk_documents(docs, 500, 100)
     vectors = embedding_chunks(chunks,model)

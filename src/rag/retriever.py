@@ -1,6 +1,7 @@
 from sentence_transformers import SentenceTransformer
 import numpy as np
 from store import load_index
+from config import EMBEDDING_MODEL
 
 def embedder_query(question, model):
    vector_question = model.encode(question)
@@ -23,7 +24,7 @@ def search(query_vector, vectors, chunks, top_k = 5):
 
 if __name__ =="__main__":
    
-   model = SentenceTransformer("all-MiniLM-L6-v2")
+   model = SentenceTransformer(EMBEDDING_MODEL)
    q = embedder_query("interior height of the goal", model)
    print(q.shape)
    chunks, vectors = load_index("processed_data/")

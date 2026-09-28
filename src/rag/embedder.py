@@ -2,6 +2,7 @@ import torch
 from sentence_transformers import SentenceTransformer
 from chunker import chunk_documents
 from loader import load_documents
+from config import EMBEDDING_MODEL
 
 def embedding_chunks(chunks, model):
     plain_list = []
@@ -14,7 +15,7 @@ def embedding_chunks(chunks, model):
 
 if __name__ == "__main__":
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer(EMBEDDING_MODEL)
     docs = load_documents("raw_data/")
     chunks = chunk_documents(docs, 500, 100)[:20]
     vectors = embedding_chunks(chunks,model)
