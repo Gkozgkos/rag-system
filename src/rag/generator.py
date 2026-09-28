@@ -23,7 +23,7 @@ def generate_answer(prompt, model_name):
 
 if __name__ == "__main__":
 
-    question = "how many sets are in a tennis game?"
+    question = input("Ask a question about sport rules :")
     model = SentenceTransformer(EMBEDDING_MODEL)
     q = embedder_query(question, model)
     print(q.shape)
