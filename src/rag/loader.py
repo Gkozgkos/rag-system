@@ -11,34 +11,48 @@ def load_documents(path):
     for doc_path in documents:
         content = {}
 
-        if doc_path.suffix == ".txt":
-            content["source"] = doc_path.name
-            content["text"] = doc_path.read_text(encoding="utf-8")
-            files.append(content)
+        if doc_path.suffix.lower() == ".txt":
+            try:
+                content["source"] = doc_path.name
+                content["text"] = doc_path.read_text(encoding="utf-8")
+                files.append(content)
 
-        elif doc_path.suffix == ".pdf":
-            with open(doc_path, 'rb') as file:
-                reader = PdfReader(file)
-                pdf_text = ''
-                for page in reader.pages:
-                    pdf_text += page.extract_text() + "\n"
+            except Exception as e :
+                print(f"Skipping {doc_path.name}: {e}")
+                continue
+
+        elif doc_path.suffix.lower() == ".pdf":
+            try:
+                with open(doc_path, 'rb') as file:
+                    reader = PdfReader(file)
+                    pdf_text = ''
+                    for page in reader.pages:
+                        pdf_text += page.extract_text() + "\n"
 
                 content["source"] = doc_path.name
                 content["text"] = pdf_text
                 files.append(content)
 
-        elif doc_path.suffix == ".docx":
-            with open(doc_path, 'rb') as file:
-                document = Document(file)
-                doc_text = ''
+            except Exception as e :
+                print(f"Skipping {doc_path.name}: {e}")
+                continue
 
-                for paragraph in document.paragraphs:
-                    doc_text += paragraph.text + "\n"
+        elif doc_path.suffix.lower() == ".docx":
+            try:
+                with open(doc_path, 'rb') as file:
+                    document = Document(file)
+                    doc_text = ''
 
-            content["source"] = doc_path.name
-            content["text"] = doc_text
-            files.append(content)
+                    for paragraph in document.paragraphs:
+                        doc_text += paragraph.text + "\n"
 
+                content["source"] = doc_path.name
+                content["text"] = doc_text
+                files.append(content)
+
+            except Exception as e :
+                print(f"Skipping {doc_path.name}: {e}")
+                continue
         else:
             continue
 
