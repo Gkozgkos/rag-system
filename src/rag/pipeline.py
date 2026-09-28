@@ -23,4 +23,7 @@ def answer(question, chunks, vectors, model, model_name, top_k):
 if __name__ == "__main__":
     model = SentenceTransformer(EMBEDDING_MODEL)
     chunks, vectors = load_index(INDEX_PATH)
-    print(answer("How many substitutes can a futsal team name? ", chunks, vectors, model, LLM_MODEL, 5))
+
+    while True:
+        question = input("What would you like to ask? \n")
+        print(answer(question, chunks, vectors, model, LLM_MODEL, 5))
